@@ -5,25 +5,25 @@ std::map<std::string, CommandInfo> commands;
 ///HELPER FUNCTIONS
 void STLStringToLowercase(std::string* str)
 {
-    std::string res = *str;
-    for(int i=0; i<str->size(); i++)
-    {
-        char* cPtr =&res[i];
-        *cPtr = (*cPtr>='A'&&*cPtr<='Z')?*cPtr+32:*cPtr;
-    }
-    *str = res;
+	std::string res = *str;
+	for(int i=0; i<str->size(); i++)
+	{
+		char* cPtr =&res[i];
+		*cPtr = (*cPtr>='A'&&*cPtr<='Z')?*cPtr+32:*cPtr;
+	}
+	*str = res;
 }
 ///./////////////////////////////////////////////////
 
 void RegisterCommand(LPCSTR name, mfmSvCommand func, int helpID, int perm)
 {
-    std::string sName = name;
-    STLStringToLowercase(&sName);
+	std::string sName = name;
+	STLStringToLowercase(&sName);
 
-    CommandInfo c;
-    c.funcPtr = func;
-    c.helpID = helpID;
-    c.permissions = perm;
+	CommandInfo c;
+	c.funcPtr = func;
+	c.helpID = helpID;
+	c.permissions = perm;
 
 	commands[sName] = c;
 }
@@ -54,20 +54,20 @@ void SendServerCommand(LPCSTR cmd, int UserID)
 	int cmdSize = 0;
 	int argSize = 0;
 	bool phase = 0;
-    bool nsc = 0; //for ignoring leading spaces
+	bool nsc = 0; //for ignoring leading spaces
 	for(int i=0; cmd[i]!='\0'; i++)
 	{
-	    if(cmd[i] == ' ')
+		if(cmd[i] == ' ')
 		{
 			if(!phase && nsc)
 			{
 				phase = 1;
 				while(cmd[i]==' ')
-                    i++;
+					i++;
 			}
 		}
 		else
-            nsc=1;
+			nsc=1;
 		if(phase==0)
 			cmdSize++;
 		else
@@ -83,13 +83,13 @@ void SendServerCommand(LPCSTR cmd, int UserID)
 
 	std::string cmdPartS(cmdPart);
 	STLStringToLowercase(&cmdPartS);
-    if(commands.find(cmdPartS) == commands.end())
-        ServerLog("Command not recognized. Type 'help' to list available commands.");
-    else
-    {
-        mfmSvCommand cmdFunc = commands[cmdPartS].funcPtr;
-        cmdFunc(argPart, UserID);
-    }
+	if(commands.find(cmdPartS) == commands.end())
+		ServerLog("Command not recognized. Type 'help' to list available commands.");
+	else
+	{
+		mfmSvCommand cmdFunc = commands[cmdPartS].funcPtr;
+		cmdFunc(argPart, UserID);
+	}
 
 
 	delete[] cmdPart;

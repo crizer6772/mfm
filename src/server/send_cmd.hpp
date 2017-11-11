@@ -15,9 +15,9 @@ typedef int (*mfmSvCommand)(LPCSTR, int);
 
 struct CommandInfo
 {
-    mfmSvCommand funcPtr;
-    int helpID;
-    int permissions;
+	mfmSvCommand funcPtr;
+	int helpID;
+	int permissions;
 };
 
 extern std::map<std::string, CommandInfo> commands;

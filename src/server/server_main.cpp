@@ -39,16 +39,16 @@ unsigned int __stdcall ServerMain(void* param)
 	defEditWndProc = (WNDPROC)SetWindowLongPtr(ServerGUI.CommandLine, GWLP_WNDPROC, (LONG_PTR)sCmdLine_WndProc);
 
 
-    //initializing server log
+	//initializing server log
 	InitServerLog(32768);
 	ServerLog("MFM Server v0.311");
 	ServerLog("Enter 'help' to list available commands.");
 
-    //registering server commands
-    RegisterCommand("help", cServerHelp, SVHELP_HELP, PERM_HOSTONLY);
-    RegisterCommand("kick", cKickUser, SVHELP_KICK, PERM_ADMIN);
-    RegisterCommand("exec", cExecFile, SVHELP_EXEC, PERM_HOSTONLY);
-    RegisterCommand("fuck", cFuckYou, SVHELP_HIDDEN, PERM_HOSTONLY);
+	//registering server commands
+	RegisterCommand("help", cServerHelp, SVHELP_HELP, PERM_HOSTONLY);
+	RegisterCommand("kick", cKickUser, SVHELP_KICK, PERM_ADMIN);
+	RegisterCommand("exec", cExecFile, SVHELP_EXEC, PERM_HOSTONLY);
+	RegisterCommand("fuck", cFuckYou, SVHELP_HIDDEN, PERM_HOSTONLY);
 
 	while(GetMessage(&msg, NULL, 0, 0))
 	{

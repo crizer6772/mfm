@@ -41,6 +41,6 @@ void ServerLog(LPCSTR msg)
 	svLogBuffer[svLogBufferSize-1] = 0;
 	SetWindowTextA(ServerGUI.LogWindow, svLogBuffer);
 	SendMessage(ServerGUI.LogWindow, EM_SETSEL, 0, -1);
-    SendMessage(ServerGUI.LogWindow, EM_SETSEL, -1, -1);
+	SendMessage(ServerGUI.LogWindow, EM_SETSEL, -1, -1);
 	SendMessage(ServerGUI.LogWindow, EM_SCROLLCARET, 0, 0);
 }
