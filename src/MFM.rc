@@ -1,0 +1,206 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Polish resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_PLK)
+#ifdef _WIN32
+LANGUAGE LANG_POLISH, SUBLANG_DEFAULT
+#pragma code_page(1250)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_MFM                 ICON                    "MFM.ico"
+IDI_SMALL               ICON                    "small.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDC_MFM MENU 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "E&xit",                       IDM_EXIT
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About ...",                  IDM_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDC_MFM ACCELERATORS 
+BEGIN
+    "?",            IDM_ABOUT,              ASCII,  ALT
+    "/",            IDM_ABOUT,              ASCII,  ALT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MAINMENU DIALOGEX 22, 17, 101, 84
+STYLE DS_SETFONT | DS_MODALFRAME | WS_CAPTION | WS_SYSMENU
+CAPTION "MFM v0.01"
+FONT 8, "MS Sans Serif", 400, 0, 0xEE
+BEGIN
+    EDITTEXT        IDC_MM_IPBOX,15,13,69,12,ES_AUTOHSCROLL
+    LTEXT           "Connect to server",IDC_STATIC,19,3,57,8
+    PUSHBUTTON      "Connect",IDC_MM_CONNECT,24,28,50,14
+    PUSHBUTTON      "Start in server mode",IDC_MM_SVMODE,14,55,71,14
+    CONTROL         "Start with client",IDC_MM_SVMODE_CLIENT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,70,64,10
+END
+
+IDD_LOGINDIALOG DIALOGEX 0, 0, 128, 111
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Login"
+FONT 8, "MS Sans Serif", 400, 0, 0xEE
+BEGIN
+    LTEXT           "Connection successful",IDC_STATIC,26,6,73,8
+    LTEXT           "Username:",IDC_STATIC,3,18,118,8
+    EDITTEXT        IDC_LW_USERNAME,3,27,118,12,ES_AUTOHSCROLL
+    LTEXT           "Password:",IDC_STATIC,3,45,118,8
+    EDITTEXT        IDC_LW_PWD,3,54,118,12,ES_PASSWORD | ES_AUTOHSCROLL
+    PUSHBUTTON      "Log in",IDC_LW_LOGIN,37,82,50,12
+    PUSHBUTTON      "Sign up",IDC_LW_SIGNUP,37,95,50,12
+    CONTROL         "Remember login data",IDC_LW_REMEMBER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,68,117,10
+END
+
+IDD_CDIALOG DIALOGEX 0, 0, 86, 13
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Connecting..."
+FONT 8, "MS Sans Serif", 400, 0, 0xEE
+BEGIN
+    LTEXT           "Connecting to server...",IDC_STATIC,2,2,84,10
+END
+
+IDD_SVPROPS DIALOGEX 0, 0, 281, 149
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Server properties"
+FONT 8, "MS Sans Serif", 400, 0, 0xEE
+BEGIN
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_LOGINDIALOG, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 110
+    END
+
+    IDD_CDIALOG, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 12
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_APP_TITLE           "MFM"
+    IDS_LOOPBACKIP          "127.0.0.1"
+    IDC_MFM                 "MFM"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_CMDECHO             "MFMSV> "
+    IDS_NAVYSEALCP          "What the fuck did you just fucking say about me, you little bitch? I’ll have you know I graduated top of my class in the Navy Seals, and I’ve been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills. I am trained in gorilla warfare and I’m the top sniper in the entire US armed forces. You are nothing to me but just another target. I will wipe you the fuck out with precision the likes of which has never been seen before on this Earth, mark my fucking words. You think you can get away with saying that shit to me over the Internet? Think again, fucker. As we speak I am contacting my secret network of spies across the USA and your IP is being traced right now so you better prepare for the storm, maggot. The storm that wipes out the pathetic little thing you call your life. You’re fucking dead, kid. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that’s just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the United States Marine Corps and I will use it to its full extent to wipe your miserable ass off the face of the continent, you little shit. If only you could have known what unholy retribution your little “clever” comment was about to bring down upon you, maybe you would have held your fucking tongue. But you couldn’t, you didn’t, and now you’re paying the price, you goddamn idiot. I will shit fury all over you and you will drown in it. You’re fucking dead, kiddo."
+END
+
+STRINGTABLE 
+BEGIN
+    SVHELP_HELP             "- lists available commands."
+END
+
+STRINGTABLE 
+BEGIN
+    SVHELP_KICK             "[username] <message> - kicks a user from a server. examples: \r\n\t ""kick thelegend311"" \r\n\t ""kick kacper stop being a fucking cunt"""
+    SVHELP_EXEC             "[filename] - executes commands from file, line by line. enter as a relative path to /server"
+END
+
+#endif    // Polish resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
