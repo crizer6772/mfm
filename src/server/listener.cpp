@@ -34,12 +34,18 @@ unsigned int __stdcall ConnectionListener(void* param)
 
 	while(1)
 	{
-		acceptTCP = accept(SocketTCP, NULL, NULL);
+		sockaddr_in clientaddr;
+		int ss = sizeof(sockaddr_in);
+		acceptTCP = accept(SocketTCP, (SOCKADDR*)&clientaddr, &ss);
 		if(acceptTCP != SOCKET_ERROR)
 		{
 			HANDLE hNewClientSession;
 			unsigned int hCSThreadID=0;
-			hNewClientSession = (HANDLE)_beginthreadex(NULL, 0, &ClientSession, (void*)&acceptTCP, 0, &hCSThreadID);
+			unsigned int fData[2];
+
+			fData[0] = acceptTCP;
+			fData[1] = clientaddr.sin_addr.s_addr;
+			hNewClientSession = (HANDLE)_beginthreadex(NULL, 0, &ClientSession, (void*)&fData, 0, &hCSThreadID);
 			acceptTCP = SOCKET_ERROR;
 		}
 	}

@@ -2,10 +2,10 @@
 
 unsigned int __stdcall ClientMain(void* hostname) //hostname - LPSTR
 {
-	Sleep(860);
+	Sleep(86);
 	char* c_hostname = (char*)hostname;
 
-	char* f_hostname = new char[512];
+	char f_hostname[512];
 	memset(f_hostname, 0, 512);
 	int fPos = 0;
 	for(int i=0; i<strlen(c_hostname); i++)
@@ -22,15 +22,15 @@ unsigned int __stdcall ClientMain(void* hostname) //hostname - LPSTR
 	sv.sin_port = htons(10311);
 
 
-	if(sv.sin_addr.s_addr == INADDR_NONE)
+	if(sv.sin_addr.s_addr == INADDR_NONE || sv.sin_addr.s_addr == INADDR_ANY)
 	{
-		MessageBoxA(NULL, "invalid address specified", "error kurwa w chuj", MB_OK);
+		MessageBoxA(NULL, "invalid address specified", "error", MB_OK);
 		return 0;
 	}
 
 	if(connect(cs, (SOCKADDR*)&sv, sizeof(sockaddr_in)) == SOCKET_ERROR)
 	{
-		MessageBoxA(NULL, "failed to connect", "error kurwa w chuj", MB_OK);
+		MessageBoxA(NULL, "failed to connect", "error", MB_OK);
 		return 0;
 	}
 
