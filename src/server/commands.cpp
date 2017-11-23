@@ -70,3 +70,14 @@ int cExecFile(const char* arg, int userID)
 		SendServerCommand(cmd.c_str(), USERID_HOST);
 	}
 }
+
+/** COMMAND: "clear" **/
+int cClear(const char* arg, int userID)
+{
+	ClearServerWindow();
+}
+/** COMMAND: "cls" **/
+int cCls(const char* arg, int userID)
+{
+	SendServerCommand("clear", userID);
+}

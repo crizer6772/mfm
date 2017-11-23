@@ -32,6 +32,8 @@
 #define SVHELP_HELP                     1311
 #define SVHELP_KICK                     1312
 #define SVHELP_EXEC                     1313
+#define SVHELP_CLEAR                    1314
+#define SVHELP_CLS                      1315
 #define IDC_STATIC                      -1
 
 // Next default values for new objects

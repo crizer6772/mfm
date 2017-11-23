@@ -1,7 +1,7 @@
 #include "mainmenu.hpp"
 
 HINSTANCE hInst_sf;
-LPTSTR mfm_cHostname;
+char* mfm_cHostname;
 int mfmMode;
 bool svcmode = false;
 const int mmBufSize = 512;
@@ -9,8 +9,8 @@ const int mmBufSize = 512;
 BOOL CALLBACK WndProc_MainMenu(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
 	bool delBuffer = true;
-	TCHAR* buf = new TCHAR[mmBufSize];
-	GetDlgItemText(hwnd, IDC_MM_IPBOX, buf, mmBufSize);
+	char* buf = new char[mmBufSize];
+	GetDlgItemTextA(hwnd, IDC_MM_IPBOX, buf, mmBufSize);
 	HWND hSvcCheckbox = GetDlgItem(hwnd, IDC_MM_SVMODE_CLIENT);
 	HWND hHostnameBox = GetDlgItem(hwnd, IDC_MM_IPBOX);
 	switch(msg)

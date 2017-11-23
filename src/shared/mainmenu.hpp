@@ -10,7 +10,7 @@
 #define MFM_SVCMODE 15
 
 extern HINSTANCE hInst_sf;
-extern LPTSTR mfm_cHostname;
+extern char* mfm_cHostname;
 extern int mfmMode;
 extern bool svcmode;
 extern const int mmBufSize;

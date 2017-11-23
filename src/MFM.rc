@@ -187,6 +187,8 @@ STRINGTABLE
 BEGIN
     SVHELP_KICK             "[username] <message> - kicks a user from a server. examples: \r\n\t ""kick thelegend311"" \r\n\t ""kick kacper stop being a fucking cunt"""
     SVHELP_EXEC             "[filename] - executes commands from file, line by line. enter as a relative path to /server"
+    SVHELP_CLEAR            " - clears the log window."
+    SVHELP_CLS              " - for convenience - does the same as ""clear"""
 END
 
 #endif    // Polish resources

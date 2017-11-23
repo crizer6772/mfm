@@ -1,4 +1,5 @@
 #include "server_main.hpp"
+#include "listener.hpp"
 #include "log_window.hpp"
 #include "server_log.hpp"
 #include "send_cmd.hpp"
@@ -29,9 +30,8 @@ unsigned int __stdcall ServerMain(void* param)
 	ServerGUI.CommandLine = CreateWindowEx(WS_EX_CLIENTEDGE, TEXT("EDIT"), NULL, svCmdLineStyle, lbOffset+lw, lbOffset+lh, lw, 20, ServerGUI.MainWindow, NULL, NULL, NULL);
 
 	//setting shit up
-	SetWindowText(ServerGUI.LogWindow, TEXT("console log test"));
-	SendMessage(ServerGUI.LogWindow, WM_SETFONT,(WPARAM)DefaultFont, 0);
-	SendMessage(ServerGUI.CommandLine, WM_SETFONT,(WPARAM)DefaultFont, 0);
+	SendMessage(ServerGUI.LogWindow, WM_SETFONT, (WPARAM)DefaultFont, 0);
+	SendMessage(ServerGUI.CommandLine, WM_SETFONT, (WPARAM)DefaultFont, 0);
 
 	ShowWindow(ServerGUI.MainWindow, 10);
 	UpdateWindow(ServerGUI.MainWindow);
@@ -49,6 +49,12 @@ unsigned int __stdcall ServerMain(void* param)
 	RegisterCommand("kick", cKickUser, SVHELP_KICK, PERM_ADMIN);
 	RegisterCommand("exec", cExecFile, SVHELP_EXEC, PERM_HOSTONLY);
 	RegisterCommand("fuck", cFuckYou, SVHELP_HIDDEN, PERM_HOSTONLY);
+	RegisterCommand("clear", cClear, SVHELP_CLEAR, PERM_HOSTONLY);
+	RegisterCommand("cls", cCls, SVHELP_CLS, PERM_HOSTONLY);
+
+	unsigned int hCListenerID=0;
+	HANDLE hCListener;
+	hCListener = (HANDLE)_beginthreadex(NULL, 0, &ConnectionListener, NULL, 0, &hCListenerID);
 
 	while(GetMessage(&msg, NULL, 0, 0))
 	{

@@ -12,3 +12,4 @@ extern WCHAR* cmdLineBuf;
 
 bool InitServerLog(int buffer_size);
 void ServerLog(LPCSTR msg);
+void ClearServerWindow();

@@ -14,15 +14,26 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	unsigned int ThreadID_SV = 0;
 	unsigned int ThreadID_CL = 1;
 
+	WSADATA wsaData;
+	int res = WSAStartup(MAKEWORD(2,2), &wsaData);
+	if(res != NO_ERROR)
+	{
+		MessageBoxA(NULL, "WSAStartup failed", "error kurwa w chuj", MB_OK|MB_ICONSTOP);
+		return 0;
+	}
+
 	if(mfmMode == MFM_CLIENTMODE || mfmMode == MFM_SVCMODE)
 	{
+		char* clArg = new char[512];
 		if(mfmMode == MFM_SVCMODE)
 		{
-			TCHAR* loopback = new TCHAR[16];
-			LoadString(hInstance, IDS_LOOPBACKIP, loopback, 16);
-			mfm_cHostname = loopback;
+			LoadStringA(hInstance, IDS_LOOPBACKIP, clArg, 16);
 		}
-		hClThread = (HANDLE)_beginthreadex(NULL, 0, &ClientMain, (void*)mfm_cHostname, 0, &ThreadID_CL);
+		else
+		{
+			strcpy(clArg, mfm_cHostname);
+		}
+		hClThread = (HANDLE)_beginthreadex(NULL, 0, &ClientMain, (void*)clArg, 0, &ThreadID_CL);
 	}
 	if(mfmMode == MFM_SVMODE || mfmMode == MFM_SVCMODE)
 	{
