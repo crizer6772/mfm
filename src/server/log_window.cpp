@@ -9,7 +9,6 @@ WCHAR* cmdLineBuf;
 
 LRESULT CALLBACK WndProc_ServerWindow(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
-	WCHAR EmptyStr[2] = {0, 0};
 	if(!cmdLineBuf)
 		cmdLineBuf = new WCHAR[1024];
 	GetWindowText(ServerGUI.CommandLine, cmdLineBuf, 1024);
@@ -23,11 +22,6 @@ LRESULT CALLBACK WndProc_ServerWindow(HWND hwnd, UINT msg, WPARAM wParam, LPARAM
 		PostQuitMessage(0);
 		break;
 	case WM_COMMAND:
-		if(wParam == 311 && lParam == 311)
-		{
-			SendServerCommand(cmdLineBuf, wcslen(cmdLineBuf), USERID_HOST);
-			SetWindowText(ServerGUI.CommandLine, EmptyStr);
-		}
 		break;
 	case WM_KEYDOWN:
 		break;
@@ -48,13 +42,15 @@ LRESULT CALLBACK WndProc_ServerWindow(HWND hwnd, UINT msg, WPARAM wParam, LPARAM
 
 LRESULT CALLBACK sCmdLine_WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
+	WCHAR EmptyStr[2] = {0, 0};
 	switch (msg)
 	{
 	case WM_KEYDOWN:
 		switch (wParam)
 		{
 		case VK_RETURN:
-			SendMessage(ServerGUI.MainWindow, WM_COMMAND, 311, 311);
+			SendServerCommand(cmdLineBuf, wcslen(cmdLineBuf), USERID_HOST);
+			SetWindowText(ServerGUI.CommandLine, EmptyStr);
 			break;
 		}
 	default:

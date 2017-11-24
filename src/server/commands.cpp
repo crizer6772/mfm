@@ -79,5 +79,5 @@ int cClear(const char* arg, int cmdsize, int userID)
 /** COMMAND: "cls" **/
 int cCls(const char* arg, int cmdsize, int userID)
 {
-	SendServerCommand("clear", sizeof("clear"), userID);
+	cClear(arg, cmdsize, userID);
 }

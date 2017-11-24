@@ -4,7 +4,10 @@ unsigned int __stdcall ClientMain(void* hostname) //hostname - LPSTR
 {
 	Sleep(86);
 	char* c_hostname = (char*)hostname;
-
+	AllocConsole();
+	freopen("CONOUT$", "w", stdout);
+	printf("Connecting to %s...", (char*)hostname);
+	Sleep(200);
 	char f_hostname[512];
 	memset(f_hostname, 0, 512);
 	int fPos = 0;
