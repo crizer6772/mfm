@@ -15,7 +15,7 @@ void __DisplayHelp(std::string name, int code)
 ///.///////////////////////////////////////////////////////////////////
 
 /** COMMAND: "help" **/
-int cServerHelp(const char* arg, int userID)
+int cServerHelp(const char* arg, int cmdsize, int userID)
 {
 	bool mode = 1; //0 - specific command, 1 - all
 	std::string argS(arg);
@@ -37,7 +37,7 @@ int cServerHelp(const char* arg, int userID)
 }
 
 /** COMMAND: "fuck you" **/
-int cFuckYou(const char* arg, int userID)
+int cFuckYou(const char* arg, int cmdsize, int userID)
 {
 	if(strcmp(arg, "you")==0)
 	{
@@ -48,13 +48,13 @@ int cFuckYou(const char* arg, int userID)
 }
 
 /** COMMAND: "kick" **/
-int cKickUser(const char* arg, int userID)
+int cKickUser(const char* arg, int cmdsize, int userID)
 {
 	ServerLog("this does nothing fuck off");
 }
 
 /** COMMAND: "exec" **/
-int cExecFile(const char* arg, int userID)
+int cExecFile(const char* arg, int cmdsize, int userID)
 {
 	std::string relPath = "server/" + std::string(arg);
 	std::ifstream file(relPath.c_str());
@@ -67,17 +67,17 @@ int cExecFile(const char* arg, int userID)
 	{
 		std::string cmd;
 		std::getline(file, cmd);
-		SendServerCommand(cmd.c_str(), USERID_HOST);
+		SendServerCommand(cmd.c_str(), cmd.size(), userID);
 	}
 }
 
 /** COMMAND: "clear" **/
-int cClear(const char* arg, int userID)
+int cClear(const char* arg, int cmdsize, int userID)
 {
 	ClearServerWindow();
 }
 /** COMMAND: "cls" **/
-int cCls(const char* arg, int userID)
+int cCls(const char* arg, int cmdsize, int userID)
 {
-	SendServerCommand("clear", userID);
+	SendServerCommand("clear", sizeof("clear"), userID);
 }

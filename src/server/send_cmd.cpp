@@ -28,10 +28,10 @@ void RegisterCommand(LPCSTR name, mfmSvCommand func, int helpID, int perm)
 	commands[sName] = c;
 }
 
-void SendServerCommand(LPCSTR cmd, int UserID)
+void SendServerCommand(LPCSTR cmd, int cmdsize, int UserID)
 {
 	//part 0
-	int cmdLength = strlen(cmd);
+	int cmdLength = cmdsize; //strlen(cmd);
 	if(!cmdLength)
 		return;
 
@@ -88,7 +88,7 @@ void SendServerCommand(LPCSTR cmd, int UserID)
 	else
 	{
 		mfmSvCommand cmdFunc = commands[cmdPartS].funcPtr;
-		cmdFunc(argPart, UserID);
+		cmdFunc(argPart, cmdLength, UserID);
 	}
 
 
@@ -96,13 +96,12 @@ void SendServerCommand(LPCSTR cmd, int UserID)
 	delete[] argPart;
 }
 
-void SendServerCommand(LPCWSTR cmd, int UserID)
+void SendServerCommand(LPCWSTR cmd, int cmdsize, int UserID)
 {
-	int utf16size = wcslen(cmd);
-	int utf8size = WideCharToMultiByte(CP_UTF8, 0, cmd, utf16size, NULL, 0, NULL, NULL);
+	int utf8size = WideCharToMultiByte(CP_UTF8, 0, cmd, cmdsize, NULL, 0, NULL, NULL);
 	char* utf8cmd = new char[utf8size+1];
 	memset(utf8cmd, 0, utf8size+1);
-	WideCharToMultiByte(CP_UTF8, 0, cmd, utf16size, utf8cmd, utf8size, NULL, NULL);
-	SendServerCommand(utf8cmd, UserID);
+	WideCharToMultiByte(CP_UTF8, 0, cmd, cmdsize, utf8cmd, utf8size, NULL, NULL);
+	SendServerCommand(utf8cmd, utf8size, UserID);
 	delete[] utf8cmd;
 }

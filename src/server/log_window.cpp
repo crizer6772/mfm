@@ -25,7 +25,7 @@ LRESULT CALLBACK WndProc_ServerWindow(HWND hwnd, UINT msg, WPARAM wParam, LPARAM
 	case WM_COMMAND:
 		if(wParam == 311 && lParam == 311)
 		{
-			SendServerCommand(cmdLineBuf, USERID_HOST);
+			SendServerCommand(cmdLineBuf, wcslen(cmdLineBuf), USERID_HOST);
 			SetWindowText(ServerGUI.CommandLine, EmptyStr);
 		}
 		break;
