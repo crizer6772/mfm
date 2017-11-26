@@ -3,7 +3,7 @@
 
 unsigned int __stdcall ClientSession(void* data)
 {
-    SOCKET s = *(SOCKET*)(socket);
+    SOCKET s = *(SOCKET*)(data);
     in_addr ipAddr = *(in_addr*)(data+sizeof(int));
 
     char lm[512];

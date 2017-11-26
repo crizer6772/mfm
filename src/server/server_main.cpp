@@ -45,12 +45,12 @@ unsigned int __stdcall ServerMain(void* param)
 	ServerLog("Enter 'help' to list available commands.");
 
 	//registering server commands
-	RegisterCommand("help", cServerHelp, SVHELP_HELP, PERM_HOSTONLY);
-	RegisterCommand("kick", cKickUser, SVHELP_KICK, PERM_ADMIN);
-	RegisterCommand("exec", cExecFile, SVHELP_EXEC, PERM_HOSTONLY);
-	RegisterCommand("fuck", cFuckYou, SVHELP_HIDDEN, PERM_HOSTONLY);
-	RegisterCommand("clear", cClear, SVHELP_CLEAR, PERM_HOSTONLY);
-	RegisterCommand("cls", cCls, SVHELP_CLS, PERM_HOSTONLY);
+	RegisterCommand("help", cServerHelp, SVHELP_HELP, AUTH_HOST);
+	RegisterCommand("kick", cKickUser, SVHELP_KICK, AUTH_ADMIN|AUTH_HOST);
+	RegisterCommand("exec", cExecFile, SVHELP_EXEC, AUTH_HOST);
+	RegisterCommand("fuck", cFuckYou, SVHELP_HIDDEN, AUTH_HOST);
+	RegisterCommand("clear", cClear, SVHELP_CLEAR, AUTH_HOST);
+	RegisterCommand("cls", cCls, SVHELP_CLS, AUTH_HOST);
 
 	unsigned int hCListenerID=0;
 	HANDLE hCListener;
