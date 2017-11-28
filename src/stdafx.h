@@ -10,6 +10,7 @@
 #include <process.h>
 
 //C
+#include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
 #include <malloc.h>
@@ -22,7 +23,9 @@
 
 //C++
 #include <algorithm>
+#include <iostream>
 #include <fstream>
+#include <vector>
 #include <string>
 #include <map>
 

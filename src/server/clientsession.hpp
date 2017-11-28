@@ -5,10 +5,17 @@
 struct ClientSessionInfo
 {
 	//UserAccount* acc;
-	int UserID;
-	bool LoggedIn;
-	char* SessionToken;
-	int SessionTime; //in seconds
+	uint32_t address;
+	int userID;
+	char* token;
+	int time; //in seconds
 };
+
+/*
+COMMAND HEADER:
+32 bytes - command ID
+4 bytes - length
+(command)
+*/
 
 unsigned int __stdcall ClientSession(void* data);

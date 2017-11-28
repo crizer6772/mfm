@@ -6,6 +6,7 @@ unsigned int __stdcall ClientMain(void* hostname) //hostname - LPSTR
 	char* c_hostname = (char*)hostname;
 	AllocConsole();
 	freopen("CONOUT$", "w", stdout);
+	freopen("CONIN$", "r", stdin);
 	printf("Connecting to %s... ", (char*)hostname);
 	Sleep(200);
 	char f_hostname[512];
@@ -36,8 +37,14 @@ unsigned int __stdcall ClientMain(void* hostname) //hostname - LPSTR
 		MessageBoxA(NULL, "failed to connect", "error", MB_OK);
 		return 0;
 	}
-
 	printf("connection successful\n");
+
+	while(1)
+	{
+		std::string cmd;
+		std::getline(std::cin, cmd);
+		send(cs, (char*)(&cmd[0]), cmd.size(), 0);
+	}
 
 	return 0;
 }
