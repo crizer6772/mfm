@@ -22,9 +22,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		return 0;
 	}
 
+	char clArg[512];
 	if(mfmMode == MFM_CLIENTMODE || mfmMode == MFM_SVCMODE)
 	{
-		char* clArg = new char[512];
 		if(mfmMode == MFM_SVCMODE)
 		{
 			LoadStringA(hInstance, IDS_LOOPBACKIP, clArg, 16);

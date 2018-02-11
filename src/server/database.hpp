@@ -17,6 +17,7 @@ struct Conversation
 
 struct UserAccount
 {
+	SOCKET s;
 	int id;
 	char username[32];
 	char pwdhash[32]; //sha256(sha256(password)+salt), binary

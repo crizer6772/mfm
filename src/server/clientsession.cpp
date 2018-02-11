@@ -12,12 +12,25 @@ unsigned int __stdcall ClientSession(void* data)
     strcat(lm, "new connection from ");
     strcat(lm, inet_ntoa(ipAddr));
 	ServerLog(lm);
-
-	while(s != SOCKET_ERROR)
+	int size = 1;
+	while(1)
 	{
 		char cmdbuf[512];
 		memset(cmdbuf, 0, 512);
-		int size = recv(s, cmdbuf, 512, 0);
+		size = recv(s, cmdbuf, 512, 0);
+
+		if(size == SOCKET_ERROR)
+		{
+			memset(lm, 0, 512);
+			strcat(lm, "connection from ");
+			strcat(lm, inet_ntoa(ipAddr));
+			strcat(lm, " closed");
+			ServerLog(lm);
+			break;
+		}
+		send(s, cmdbuf, 512, 0); //TODO handle partial send()s
 		SendServerCommand(cmdbuf, size, USERID_HOST);
 	}
+
+	close(s);
 }

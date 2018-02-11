@@ -1,5 +1,4 @@
 #include "client_main.hpp"
-
 unsigned int __stdcall ClientMain(void* hostname) //hostname - LPSTR
 {
 	Sleep(86);
@@ -8,7 +7,9 @@ unsigned int __stdcall ClientMain(void* hostname) //hostname - LPSTR
 	freopen("CONOUT$", "w", stdout);
 	freopen("CONIN$", "r", stdin);
 	printf("Connecting to %s... ", (char*)hostname);
-	Sleep(200);
+
+	hostent* svh = gethostbyname(c_hostname);
+
 	char f_hostname[512];
 	memset(f_hostname, 0, 512);
 	int fPos = 0;
@@ -22,7 +23,7 @@ unsigned int __stdcall ClientMain(void* hostname) //hostname - LPSTR
 	sockaddr_in sv;
 	memset(&sv, 0, sizeof(sockaddr_in));
 	sv.sin_family = AF_INET;
-	sv.sin_addr.s_addr = inet_addr(f_hostname);
+	sv.sin_addr.s_addr = *(u_long*)(svh->h_addr_list[0]);
 	sv.sin_port = htons(10311);
 
 
@@ -39,12 +40,26 @@ unsigned int __stdcall ClientMain(void* hostname) //hostname - LPSTR
 	}
 	printf("connection successful\n");
 
+
+	char* recvbuf = new char[65536];
+	memset(recvbuf, 65536, 0);
 	while(1)
 	{
 		std::string cmd;
 		std::getline(std::cin, cmd);
-		send(cs, (char*)(&cmd[0]), cmd.size(), 0);
+		int ss = send(cs, (char*)(&cmd[0]), cmd.size(), 0);
+		if(ss < 1)
+		{
+			break;
+		}
+		recv(cs, recvbuf, 65536, 0); //TODO handle partial send()s
+		puts(recvbuf);
+		memset(recvbuf, 65536, 0);
+
 	}
+
+
+	close(cs);
 
 	return 0;
 }

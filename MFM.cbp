@@ -65,6 +65,8 @@
 		<Unit filename="src/server/commands.hpp" />
 		<Unit filename="src/server/database.cpp" />
 		<Unit filename="src/server/database.hpp" />
+		<Unit filename="src/server/echo.cpp" />
+		<Unit filename="src/server/echo.hpp" />
 		<Unit filename="src/server/listener.cpp" />
 		<Unit filename="src/server/listener.hpp" />
 		<Unit filename="src/server/log_window.cpp" />

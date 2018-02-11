@@ -21,12 +21,10 @@ BOOL CALLBACK WndProc_MainMenu(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam
 	case WM_COMMAND:
 		if(GetAsyncKeyState(VK_RETURN) & 0x8000 && GetFocus() == hHostnameBox && buf[0]!=0)
 		{
-			//TODO find a better way to do this
-			mfm_cHostname = buf;
-			mfmMode = MFM_CLIENTMODE;
-			delBuffer = false;
-			EndDialog(hwnd, 1);
-			break;
+			if(LOWORD(wParam) != IDC_MM_CONNECT)
+			{
+				SendMessage(hwnd, WM_COMMAND, IDC_MM_CONNECT, 0);
+			}
 		}
 		switch(LOWORD(wParam))
 		{
